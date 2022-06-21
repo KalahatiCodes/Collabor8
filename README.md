@@ -1,5 +1,5 @@
 # Collabor8
-## Collabor8 Inception (A very optional read background story)
+<!-- ## Collabor8 Inception (A very optional read background story)
 One late night I was out at a popular local venue space to support one of my good friend's performances. I'm not much of a late night hypeman type so I often find myself having one-one and small group conversations. While waiting for the performance to begin I sat in the outdoor patio are with our friend, Sevi, who began telling me about a new community-oriented venture: 
 
 A nation wide collective of low income animators collaborating on several comics and animations to create something unique (and probably a little crazy).
@@ -8,7 +8,7 @@ Being low-income there being restraints surrounding how to collaborate using the
 
 And then it hit me! I sipped my beer and said "Sevi, what you need is a github for animators but I have no idea how to do that". And then I decided to f*ck around and find out.  
 
-So, today I present to you the most recent version of Collabor8.
+So, today I present to you the most recent version of Collabor8. -->
 
 ## Collabor8 Imagined
 Collabor8, in all of it's infancy, is an animator repository application designed for large groups of animators working collaboratively on projects. Ideally a GitHub for Procreate! Collabor8 is a free tool designed for low income creators looking to cooperatively create animation art. This tool allows lower income and independent individual/group animators to track, organize, edit, and update collective animation works in a streamlined and trackable fashion.
@@ -66,7 +66,7 @@ Here's where you can go to town on how you actually built this thing. Write as m
 #### Integrity
 - Integrity with security
 
-Key Features:
+<!-- Key Features:
 Animator Portfolio Pages 
 Repositories
 
@@ -95,7 +95,7 @@ Search
 
 ## Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
+No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing. -->
 
 ![homepage](https://user-images.githubusercontent.com/22268455/172026318-ab0369d5-1eb8-4037-9223-54672ab20311.png)
 ![profileGalaxyOthersSelfView](https://user-images.githubusercontent.com/22268455/172026323-6c03693d-4100-4be9-8c5d-4a670f62bbfc.png)
