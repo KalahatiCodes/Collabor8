@@ -1,0 +1,92 @@
+<h3><%= projects.repoName%> Board</h3>
+<ul class="messages">
+<% for(let i=0; i< projects.comments.length ; i++) { %>
+<li>
+    <span class="brown">Name</span> <%= projects.comments[i] %></span>
+    <span><i class="fa-solid fa-delete-left" aria-hidden="true"></i></span> 
+</li>
+<% } %>
+</ul>
+</div>
+
+
+
+
+
+{
+    "_id": {
+        "$oid": "62b12a711bf2a6df8bab92cf"
+    },
+    "img": "images/uploads/file-to-upload-1655577754133.png",
+    "creator": "ba",
+    "repoName": "Green As Eden",
+    "repoDescription": "Green As Eden is a 2D-style animation project following the story of a successful Drummer and Sound Engineer growing up in and out of the New Orleans carceral system. The short starts when he is young boy with Oppositional Defiance Disorder and ends with him being an adult finally being diagnosed with mild Autism Spectrum Disorder after a revelatory conversation with a new romantic partner. The message of this story is to highlight the access to education and mental health care inequities that disenfranchise and ostracize young Black people in Southern Louisiana, as well as framing the strengths, creativity, talent and beauty. \r\n\r\nThe goal is to have this project complete by next December 2023 to submit to the New Orleans Film Festival.\r\nMust use Procreate & live in the city\r\nLooking for up to 4 others to Collabor8",
+    "comments": [
+        {
+            "comment": "Hey",
+            "userId": {"$oid": "62accabac1aed74fd27b964e"},
+            "userFName": "Lacey",
+            "likes": {"$numberInt": "0"}
+        }, 
+        
+        {
+        "comment": "fghl",
+        "userId": {
+            "$oid": "62accabac1aed74fd27b964e"
+        },
+        "userFName": "Lacey",
+        "likes": {
+            "$numberInt": "0"
+        }
+    }, {
+        "comment": "fghl",
+        "userId": {
+            "$oid": "62accabac1aed74fd27b964e"
+        },
+        "userFName": "Lacey",
+        "likes": {
+            "$numberInt": "0"
+        }
+    }]
+}
+
+<!-- dont delete -->
+
+<span><strong><%= projects.comments[i].userFName %> :</strong></span>
+/projectProfile/newLike/:projectId
+<!-- DO NOT DELETE -->
+// app.get('/projectProfile', isLoggedIn, function(req, res) {
+    //   db.collection('repositories').find({creator: req.user.local.email, repoName : req.body.repoName}).toArray((err1, repos) => {
+    //     console.log('these are the repo objects',repos)
+    //     db.collection('userPortfolioInfo').find({email: req.user.local.email}).toArray((err1, infoFromUser) => {
+    //       db.collection('users').find({email: req.user.local.email}).toArray((err, result) => {
+    //         if (err) return console.log(err)
+    //         res.render('projectProfile.ejs', {
+    //           user : req.user.local, 
+    //           info : infoFromUser,
+    //           projects : repos
+    //         })
+    //       })
+    //       })
+    //     })
+    //   });
+  
+    // WORKINGISH
+    // app.get('/projectProfile/:projectId', isLoggedIn, function(req, res) {
+    //   db.collection('repositories').find({creator: req.user.local.email}).toArray((err1, repos) => {
+    //     db.collection('userPortfolioInfo').find({email: req.user.local.email}).toArray((err2, infoFromUser) => {
+    //       let projectId = ObjectId(req.params.projectId)
+    //       console.log('This is the project ID', projectId)
+    //       db.collection('repositories').find({_id:projectId}).toArray((err, result) => {
+    //         if (err) return console.log(err)
+    //         res.render('projectProfile.ejs', {
+    //             user : req.user.local, 
+    //             info : infoFromUser,
+    //             // projectsNav : repos,
+    //             // result: result ? result : { result: [0] },
+    //             projects: result[0]
+    //         })
+    //       })
+    //     })
+    //   })
+    // });

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title><%= user.fName %>'s Portfolio</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="/portfolioPage.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
+            <div>
+                <a class="navbar-brand" href="/"><img src="/images/logo.png" class="logo"><strong>Collabor8</strong></a>
+            </div>
+            <div class="container px-0 px-lg-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
+                        <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                            <ul class="dropdown-menu projects-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
+                                <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
+                                    <div class="dropdown">
+                                        <% for(var i=0; i<projects.length; i++) {%>
+                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                            </li>
+                                        <% } %>
+                                    </div>
+                                <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
+                                <div class="dropdown">
+                                    <% for(var i=0; i<projects.length; i++) {%>
+                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                        </li>
+                                    <% } %>
+                                </div>  -->
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="beige">
+        <div class="text-end row">  
+            <a href="/newRepo"><button><h8>New Project Repository</h8></button></a>
+        </div>
+        <div class="container mt-5 row">
+            <section class="col-lg-4">
+                <div class="mb-4">
+                    <h1 class="fw-bolder mb-1 peru">Welcome, <%= user.fName %></h1>
+                        <span class="text-muted fst-italic mb-2">Collabor8er Since June 22, 2022</span>
+                            <a class="badge bg-secondary text-decoration-none link-light" id="editAboutMe" href="#!">Edit About Me</a>
+                            <a id="editSocials" class="badge bg-secondary text-decoration-none link-light" href="#!">Edit Socials</a>
+                </div>
+                <div>
+                    <figure class="mb-4"><img class="img-fluid rounded-circle" src="/images/Lacey.png" alt="..." /></figure>
+                </div>
+                <div class="mb-5">
+                    <div class="aboutMe">
+                        <h2 class="fw-bolder mb-4 mt-5 peru">About Me</h2>
+                        <div id="aboutMeDescript">
+                            <% if (info[0]) { %> 
+                                <p><%= info[0].aboutMe %></p>
+                            <% } else { %>
+                                <form action="/aboutMe" method="post">
+                                    <textarea class="aboutText" name="aboutMe" placeholder="Howdy <%= user.fName%>,&#10;&#10;Here is where you get to showcase yourself! Tell us the roots of your passion for animation, favorite styles/artists/pieces, what you're currently working on and what kind of Collabor8 projects you're interested in being apart of. Happy Collabor8ing, friend!"></textarea><br>
+                                    <div class="text-center">  
+                                        <button type="submit"><h8>Save About Me</h8></button>
+                                    </div>
+                                </form>
+                            <% } %>
+                        </div> 
+                    </div>
+                    <div id="socialsList">
+                        <h3 class="peru"> Social </h3>
+                            <ul class="icons">
+                                <li><span><i id="twitterURL" class="fa fa-twitter" aria-hidden="true" href="https://twitter.com/KalahatiCodes" target="_blank"></i> Twitter</span></li>
+                                <li><span><i id="linkedInURL"class="fa fa-linkedin" aria-hidden="true" href="https://www.linkedin.com/in/laceytyquiengco-greene/" target="_blank"></i> Linked In</span></li>
+                                <li ><span><i id="instagramURL" class="fa fa-instagram" aria-hidden="true" href="https://instagram.com/KalahatiHoney" target="_blank"></i> Instagram</span></li>
+                            </ul>
+                        <form id="editSocialsList" class="hidden">
+                            <textarea name="newInstagramURL" id="newInstagramURL" placeholder="Instagram URL"></textarea><br>
+                            <textarea name="newTwitterURL" id="newTwitterURL" placeholder="Twitter URL"></textarea><br>
+                            <textarea name="newLinkedInURL" id="newLinkedInURL" placeholder="LinkedIn URL"></textarea><br>
+                            <button id="saveSocials" type="submit">Save Socials</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-8">
+                <h1 class="text-center peru">Highlighted Projects</h1>
+                <div class="row">
+                    <% for(var i=0; i<projects.length; i++) {%>
+                        <a class="text-decoration-none text col-md-3 bubble oj" href="/projectProfile/<%= projects[i]._id %>"><h4><%= projects[i].repoName %></h4></a>
+                    <% } %>
+                </div>
+            </section>
+        </div>
+    </main>   
+    <footer class="py-4 bg-footer">
+        <div class="container px-0 .px-sm-0">
+            <strong>
+                    <a class="peruF" href="#!">About</a>
+                    <a class="peruF" href="#!">Settings</a>
+                    <a class="peruF" href="#!">Contact</a>
+            </strong>
+            <span class="mkgr">Copyright &copy; Collabor8 2022</span>
+            </div>
+        </div>
+    </footer>
+<script src="/portfolioPage.js"></script>
+</body>
+</html>

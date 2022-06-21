@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Collabor8 Search</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="/search.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
+            <div>
+                <img src="/images/logo.png" class="logo">
+                <a class="navbar-brand" href="/"><strong>Collabor8</strong></a>
+            </div>
+            <div class="container px-0 px-lg-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
+                        <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                            <ul class="dropdown-menu projects-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
+                                <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
+                                    <div class="dropdown">
+                                        <% for(var i=0; i<projects.length; i++) {%>
+                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                            </li>
+                                        <% } %>
+                                    </div>
+                                <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
+                                <div class="dropdown">
+                                    <% for(var i=0; i<projects.length; i++) {%>
+                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                        </li>
+                                    <% } %>
+                                </div>  -->
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="posts text-center">
+                <form action="/newComment/<%= projects._id%>" method="POST">
+                    <h3 class="mkgreen">Post to <%= projects.repoName%> Collabor8 Board</h3>
+                    <textarea class="mb-4" name="comment"></textarea><br>
+                    <!-- <input type="file" placeholder="repoFile" name="file-to-upload"><br> -->
+                    <span class="hidden" type=text name=id ><%= projects._id %></span>
+                    <button type="submit">Post</button>
+                </form>  
+            </div>
+            <!-- Posted Comments -->
+            <div>
+                <h3>Events</h3>
+                    <ul class="comments">
+                    <% for(var i=0; i<projects.comments.length; i++) {%>
+                        <li class="comment">
+                            <p><strong><%= projects.comments[i].userFName %> : </strong><%= projects.comments[i].comment %></p>
+                            <span><i class="bi-hand-thumbs-up"></i></span>
+                            <span><i class="bi-trash"></i></span>
+                        </li>
+                    <% } %>
+                    </ul>
+            </div>
+        </section>
+    </main>
+    Go to project Page/Delete project
+    Comments/Edit Comments/Likes/Trashes portfolio page logged in user render
+    Owner vs User View
+    Add Zip Code to sign in
+    Community Forum 
+    Search Page & Events Page
+    Display Local Only
+    Edit About Me
+    Bubbles random colors and correctly file in
+    Pull and Push files to Array with date and pusher name/email
+    File Upload/Photo Upload/Photo Rendering in page
+    Add E-reader for accessibility
+    Upload multiple files
+    Github Green Squares https://bitsofco.de/github-contribution-graph-css-grid/
+    ScratchPad Page with API - Screenshots and Saves to Sketches
+    Add multiple box checker to add genre tags and post with new repo/new push
+</body>
+</html>

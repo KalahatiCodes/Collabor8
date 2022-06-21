@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>New Repository</title>
+    <link href="/portfolioPage.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
+            <div>
+                <img src="/images/logo.png" class="logo">
+                <a class="navbar-brand" href="/"><strong>Collabor8</strong></a>
+            </div>
+            <div class="container px-0 px-lg-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
+                        <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                            <ul class="dropdown-menu projects-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
+                                <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
+                                    <div class="dropdown">
+                                        <% for(var i=0; i<projects.length; i++) {%>
+                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                            </li>
+                                        <% } %>
+                                    </div>
+                                <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
+                                <div class="dropdown">
+                                    <% for(var i=0; i<projects.length; i++) {%>
+                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                        </li>
+                                    <% } %>
+                                </div>  -->
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="py-5 newRepoMain">
+        <section class="white pt-5 pb-5 newRF">
+            <h1 class="text-center mfb24R peru">
+                New Project Repository
+            </h1>
+            <div class="container px-4 px-lg-5 my-5 text-center">
+                <form action="/newRepo" enctype="multipart/form-data" method="POST">
+                    <p class="text-left peru">
+                        Project Repository & Name
+                    </p>
+                    <input class="nameText mb-4" type="text" name="repoName" placeholder="Name"><br>
+                    <p class="text-left peru">
+                        Project Description
+                    </p>
+                    <textarea class="descriptText mb-4" placeholder="Let the community get a better understanding about this project by sharing some information about it! This includes, but is not limited to:&#10;
+                    The style of animation/Synapsis/Timeline/Type and max # of Collabor8ers you want on this project:" name="repoDescript"></textarea>
+                    <p class="mb-3">
+                        <strong>
+                            Upload Sketch, Frame, Still: 
+                        </strong>
+                        <input type="file" placeholder="repoFile" name="file-to-upload">
+                    </p><br>
+                    <!-- <p class="mb-3 peru">Upload MP4</p><input type="file" placeholder="repoFile" name="file-to-upload"><br>
+                    <p class="mb-3 peru">Upload Folder</p><input type="file" placeholder="repoFile" name="file-to-upload"><br> -->
+                    <button type="submit">
+                        Create New Repository
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="py-4 bg-footer">
+        <div class="container px-0 .px-sm-0">
+            <strong>
+                    <a class="peru" href="#!">About</a>
+                    <a class="peru" href="#!">Settings</a>
+                    <a class="peru" href="#!">Contact</a>
+            </strong>
+            <span class="mkgr">Copyright &copy; Collabor8 2022</span>
+            </div>
+        </div>
+    </footer>
+<script src="/public/newRepo.js"></script>
+</body>
+</html>
