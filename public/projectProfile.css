@@ -238,7 +238,7 @@ a {
   color: #0d6efd;
   text-decoration: underline;
 }
-a:hover {
+a:hover, .go2profile:hover {
   color: #0a58ca;
 }
 
@@ -11324,14 +11324,12 @@ textarea.form-control-lg {
     text-decoration: none;
 }
 .nav-item{
-    /* border-left: 3px solid darkgray; */
     border-right: 5px solid lightgray;
     padding:0 1rem 0 1rem;
 }
 button{
   background-color: bisque;
   color: peru;
-  /* font-size: 2rem; */
   margin: 10px;
 }
 .projectHead{
@@ -11340,10 +11338,11 @@ button{
 .mkgreen{
   color: #04414d;
 }
-/* main{
-  padding-right:4rem;
-  padding-left: 4rem;
-} */
 .hidden {
   display: none;
+}
+.commentsbox{
+  padding: 1rem;
+  border: 1px solid gray;
+  background-color: whitesmoke;
 }

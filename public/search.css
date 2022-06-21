@@ -11329,7 +11329,14 @@ main{
 .sub-menu:hover .projects-menu {
   display: block;
 }
-
+button{
+  background-color: bisque;
+  color: peru;
+  padding: .5rem 1rem;
+}
+.lg{
+  font-size: 6rem;
+}
 /* .sub-menu2:hover .our-pick-menu {
   display: block;
 } */

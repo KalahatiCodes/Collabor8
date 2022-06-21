@@ -11382,7 +11382,7 @@ main{
 .hidden {
   display: none;
 }
-button{
+button, .btnqt{
   background-color: bisque;
   color: peru;
   padding: .5rem 1rem;
@@ -11390,7 +11390,7 @@ button{
 #socialsList, .aboutMe{
   margin-bottom: 4rem;
 }
-#aboutMeDescript{
+#aboutMeDescript, .orangebox{
   /* background-color: white; */
   background-color: peru;
   padding: 10px;
@@ -11430,3 +11430,4 @@ ul {
 .newRF{
   border: 2px solid peru;
 }
+

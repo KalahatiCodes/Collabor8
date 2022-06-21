@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Collabor8 Search</title>
+    <title>Collabor8 Events</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link href="/search.css" rel="stylesheet" />
 </head>
@@ -48,47 +48,116 @@
             </div>
         </nav>
     </header>
-    <main>
-        <section>
-            <div class="posts text-center">
-                <form action="/newComment/<%= projects._id%>" method="POST">
-                    <h3 class="mkgreen">Post to <%= projects.repoName%> Collabor8 Board</h3>
-                    <textarea class="mb-4" name="comment"></textarea><br>
-                    <!-- <input type="file" placeholder="repoFile" name="file-to-upload"><br> -->
-                    <span class="hidden" type=text name=id ><%= projects._id %></span>
-                    <button type="submit">Post</button>
-                </form>  
+    <main class="py-5 projectBox">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4 lg">Events</h2>
+            <div class="text-end row">  
+                <a href="/newEvent"><button><h8>New Event</h8></button></a>
             </div>
-            <!-- Posted Comments -->
-            <div>
-                <h3>Events</h3>
-                    <ul class="comments">
-                    <% for(var i=0; i<projects.comments.length; i++) {%>
-                        <li class="comment">
-                            <p><strong><%= projects.comments[i].userFName %> : </strong><%= projects.comments[i].comment %></p>
-                            <span><i class="bi-hand-thumbs-up"></i></span>
-                            <span><i class="bi-trash"></i></span>
-                        </li>
-                    <% } %>
-                    </ul>
+            <h4>Displaying Results For<%=user.ZipCode%></h4>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/speakeasy.png" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Animator Speak Easy @ Zony Mash</h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/drawingsession.png" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Weekly Collabor8 Drawing Session</h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/procreate.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Free Procreate Class (online)</h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/animationScreening.png" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">NOLA Animators Annual Screening</h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="eventPage">Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <% for(var i=0; i<events.length; i++) {%>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/animationScreening.png" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder"><%= events[i].eventName %></h5>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/eventPage/<%= events[i]._id %>">Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
             </div>
-        </section>
+        </div>
     </main>
-    Go to project Page/Delete project
-    Comments/Edit Comments/Likes/Trashes portfolio page logged in user render
-    Owner vs User View
-    Add Zip Code to sign in
-    Community Forum 
-    Search Page & Events Page
-    Display Local Only
-    Edit About Me
-    Bubbles random colors and correctly file in
-    Pull and Push files to Array with date and pusher name/email
-    File Upload/Photo Upload/Photo Rendering in page
-    Add E-reader for accessibility
-    Upload multiple files
-    Github Green Squares https://bitsofco.de/github-contribution-graph-css-grid/
-    ScratchPad Page with API - Screenshots and Saves to Sketches
-    Add multiple box checker to add genre tags and post with new repo/new push
+    <footer class="py-4 bg-footer">
+        <div class="container px-0 .px-sm-0">
+            <strong>
+                    <a class="peru" href="/about">About</a>  </a>
+                    <a class="peru" href="#!">Settings  </a>
+                    <a class="peru" href="#!">Contact</a>
+            </strong>
+            <span class="mkgr">Copyright &copy; Collabor8 2022</span>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>

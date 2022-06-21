@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>New Repository</title>
+    <title>New Event</title>
     <link href="/portfolioPage.css" rel="stylesheet" />
 </head>
 <body>
@@ -28,14 +28,14 @@
                                 <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
                                     <div class="dropdown">
                                         <% for(var i=0; i<projects.length; i++) {%>
-                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].eventName %></a>
                                             </li>
                                         <% } %>
                                     </div>
                                 <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
                                 <div class="dropdown">
                                     <% for(var i=0; i<projects.length; i++) {%>
-                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].eventName %></a>
                                         </li>
                                     <% } %>
                                 </div>  -->
@@ -50,29 +50,31 @@
     <main class="py-5 newRepoMain">
         <section class="white pt-5 pb-5 newRF">
             <h1 class="text-center mfb24R peru">
-                New Project Repository
+                New Event
             </h1>
             <div class="container px-4 px-lg-5 my-5 text-center">
-                <form action="/newRepo" enctype="multipart/form-data" method="POST">
+                <form action="/newevent" enctype="multipart/form-data" method="POST">
                     <p class="text-left peru">
-                        Project Repository & Name
+                     Event & Name
                     </p>
-                    <input class="nameText mb-4" type="text" name="repoName" placeholder="Name"><br>
+                    <input class="nameText mb-4" type="text" name="eventName" placeholder="Name"><br>
+                    <input class="nameText mb-4" type="text" name="eventLocation" placeholder="Event Location"><br>
+                    <input type=“date” placeholder=“date” name=“eventDate” required pattern=“\d{4}-\d{2}-\d{2}“>
                     <p class="text-left peru">
-                        Project Description
+                     Description
                     </p>
-                    <textarea class="descriptText mb-4" placeholder="Let the community get a better understanding about this project by sharing some information about it! This includes, but is not limited to:&#10;
-                    The style of animation/Synapsis/Timeline/Type and max # of Collabor8ers you want on this project:" name="repoDescript"></textarea>
+                    <textarea class="descriptText mb-4" placeholder="Let the community know about this event:&#10;
+                    Don't forget name, location, descripton, and contact info!" name="eventDescript"></textarea>
                     <p class="mb-3">
                         <strong>
-                            Upload Sketch, Frame, Still: 
+                            Cover Photo 
                         </strong>
-                        <input type="file" placeholder="repoFile" name="file-to-upload">
+                        <input type="file" placeholder="eventFile" name="file-to-upload">
                     </p><br>
-                    <!-- <p class="mb-3 peru">Upload MP4</p><input type="file" placeholder="repoFile" name="file-to-upload"><br>
-                    <p class="mb-3 peru">Upload Folder</p><input type="file" placeholder="repoFile" name="file-to-upload"><br> -->
+                    <!-- <p class="mb-3 peru">Upload MP4</p><input type="file" placeholder="eventFile" name="file-to-upload"><br>
+                    <p class="mb-3 peru">Upload Folder</p><input type="file" placeholder="eventFile" name="file-to-upload"><br> -->
                     <button type="submit">
-                        Create New Repository
+                        Create New Event
                     </button>
                 </form>
             </div>
@@ -89,6 +91,5 @@
             </div>
         </div>
     </footer>
-<script src="/public/newRepo.js"></script>
 </body>
 </html>

@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title><%= projects.repoName%></title>
-    <link href="/projectProfile.css" rel="stylesheet"/>
+    <title>
+        <%= projects.repoName%>
+    </title>
+    <link href="/projectProfile.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
@@ -16,13 +20,18 @@
                 <a class="navbar-brand" href="/"><img src="/images/logo.png" class="logo"><strong>Collabor8</strong></a>
             </div>
             <div class="container px-0 px-lg-0">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="/portfolioPage">My Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                         <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="/projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown"
+                                href="/projectsFrame" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Projects</a>
                         </li>
                         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
                     </ul>
@@ -31,64 +40,80 @@
         </nav>
     </header>
     <main class="py-5 beige text-center ps-5 pe-5">
-        <div class="text-end">  
-            <a href="/newRepo"><button><h8>Delete Repository</h8></button></a><br>
-        </div>
-        <section>
-            <div>
-                <h1 class="fw-bolder projectHead mkgreen"><%= projects.repoName %></h1>
+        <% if (user.local.email===projects.creator) { %>
+            <div class="text-end">
+                <button id="deleteRepo" data-id="<%= projects._id %>">
+                    <h8>Delete Repository</h8>
+                </button><br>
             </div>
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/<%= projects.img %>" alt="..." /></div>
-                    <header class="col-md-6">
-                        <h1 class="mb-1 mkgreen">Overview</h1>
-                        <div class="text-muted fst-italic mb-2"> Created June 22, 2022</div>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Push New</a>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Pull File</a>
-                        <p class="lead"><%= projects.repoDescription %></p>
-                    </header>
-                </div>
-            </div>
-        </section>
-        <!-- Make Comments-->
-        <section>
-            <div class="posts text-center">
-                <form action="/newComment/<%= projects._id%>" method="POST">
-                    <h3 class="mkgreen">Post to <%= projects.repoName%> Collabor8 Board</h3>
-                    <textarea class="mb-4" name="comment"></textarea><br>
-                    <!-- <input type="file" placeholder="repoFile" name="file-to-upload"><br> -->
-                    <span class="hidden" type=text name=id  id="id"><%= projects._id %></span>
-                    <button type="submit">Post</button>
-                </form>  
-            </div>
-            <!-- Posted Comments -->
-            <div>
-                <h3>Posts</h3>
-                    <ul class="comments">
-                    <% for(var i=0; i<projects.comments.length; i++) {%>
-                        <li class="comment">
-                            <span><%= projects.comments[i].comment %></span>
-                            <span><%= projects.comments[i].likes %></span>
-                            <span><i class="bi-hand-thumbs-up"></i></span>
-                            <span><i class="bi-trash"></i></span>
-                        </li>
-                    <% } %>
-                    </ul>
-            </div>
-        </section>
+            <% } %>
+                <section>
+                    <div>
+                        <!-- <span><i class="bi-trash"></i></span> -->
+                        <h1 class="fw-bolder projectHead mkgreen">
+                            <%= projects.repoName %>
+                        </h1>
+                    </div>
+                    <div class="container px-4 px-lg-5 my-5">
+                        <div class="row gx-4 gx-lg-5 align-items-center">
+                            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/<%= projects.img %>"
+                                    alt="..." /></div>
+                            <header class="col-md-6">
+                                <h1 class="mb-1 mkgreen">Overview</h1>
+                                <div class="text-muted fst-italic mb-2"> Created June 22, 2022</div>
+                                <a class="badge bg-secondary text-decoration-none link-light" href="#!">Push New</a>
+                                <a class="badge bg-secondary text-decoration-none link-light" href="/<%= projects.img %>" download="/<%= projects.img %>" target="_blank">Pull Sketch</a>
+                                <!-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">Pull File</a> -->
+                                <p class="lead">
+                                    <%= projects.repoDescription %>
+                                </p>
+                            </header>
+                        </div>
+                    </div>
+                </section>
+                <!-- Make Comments-->
+                <section class="row">
+                    <div class="makePost text-center commentsbox col-md-6">
+                        <form action="/comments/<%= projects._id%>" method="POST">
+                            <h3 class="mkgreen">Post to <%= projects.repoName%> Collabor8 Board</h3>
+                            <textarea class="mb-4" name="comment"></textarea><br>
+                            <!-- <input type="file" placeholder="repoFile" name="file-to-upload"><br> -->
+                            <span class="hidden" type=text name=id id="id">
+                                <%= projects._id %>
+                            </span>
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                    <!-- Posted Comments -->
+                    <div class="commentsbox col-md-6">
+                        <h3 class="mkgreen">Posts</h3>
+                        <ul class=" text-start">
+                            <% for(var i=0; i<projects.comments.length; i++) {%>
+                                <li class="comment text-decoration-none list-unstyled">
+                                    <span class="go2Profile peru" href="/portfolioPage"><strong>
+                                            <%= projects.comments[i].userFName %>:
+                                        </strong></span>
+                                    <span>
+                                        <%= projects.comments[i].comment %>
+                                    </span>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </section>
     </main>
     <footer class="py-4 bg-footer">
         <div class="container px-0 .px-sm-0">
             <strong>
-                    <a class="peru" href="#!">About</a>
-                    <a class="peru" href="#!">Settings</a>
-                    <a class="peru" href="#!">Contact</a>
+                <a class="peru" href="/about">About</a>
+                <a class="peru" href="#!">Settings</a>
+                <a class="peru" href="#!">Contact</a>
             </strong>
             <span class="mkgr">Copyright &copy; Collabor8 2022</span>
-            </div>
+        </div>
         </div>
     </footer>
     <script src="/projectProfile.js"></script>
 </body>
+
 </html>
