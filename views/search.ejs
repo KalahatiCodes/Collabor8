@@ -13,7 +13,10 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
             <div>
-                <a class="navbar-brand" href="/"><img src="/images/logo.png" class="logo"><strong>Collabor8</strong></a>
+                <img src="/images/logo.png" class="logo">
+            </div>
+            <div>
+                <a class="navbar-brand" href="/"><strong>Collabor8</strong></a>
             </div>
             <div class="container px-0 px-lg-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -27,18 +30,16 @@
                                 <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
                                 <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
                                     <div class="dropdown">
-                                        <% for(var i=0; i<projects.length; i++) {%>
-                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
-                                            </li>
-                                        <% } %>
+                                        <% if (projects.creator === user.email){ %>
+                                            <% for(var i=0; i<projects.length; i++) {%>
+                                                <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>"
+                                                        class="dropdown-item " data-toggle="dropdown">
+                                                        <%= projects[i].repoName %>
+                                                    </a>
+                                                </li>
+                                            <% } %>
+                                            <% } %>
                                     </div>
-                                <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
-                                <div class="dropdown">
-                                    <% for(var i=0; i<projects.length; i++) {%>
-                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
-                                        </li>
-                                    <% } %>
-                                </div>  -->
                             </ul>
                         </li>
                         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
@@ -54,8 +55,8 @@
                 <div class="card-header">Search</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Enter project name or user name..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                        <input class="form-control" name="searchItem" type="text" placeholder="Enter project name or user name..." id="searchItem" aria-label="Enter search term..." aria-describedby="button-search"/>
+                        <span id="buttonSearch"><button class="btn btn-primary" type="submit">Go!</button></span>
                     </div>
                 </div>
             </div>
@@ -103,6 +104,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="projectProfile.js"></script>
 </body>
 </html>

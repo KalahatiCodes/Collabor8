@@ -29,9 +29,8 @@
                         <li class="nav-item"><a class="nav-link" href="/portfolioPage">My Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                         <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown"
-                                href="/projectsFrame" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Projects</a>
+                        <li class="nav-item"><a class="nav-link"
+                                href="/projectsFrame">Projects</a>
                         </li>
                         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
                     </ul>
@@ -40,13 +39,18 @@
         </nav>
     </header>
     <main class="py-5 beige text-center ps-5 pe-5">
+        <section class="row">
+            <div class="col text-start">  
+                <a href="/portfolioPage"><button><h8>To Portfolio</h8></button></a><br>
+            </div>
         <% if (user.local.email===projects.creator) { %>
-            <div class="text-end">
-                <button id="deleteRepo" data-id="<%= projects._id %>">
+            <div class="col text-end">
+                <button type="button" id="deleteRepo" data-id="<%= projects._id %>">
                     <h8>Delete Repository</h8>
                 </button><br>
             </div>
             <% } %>
+        </section>
                 <!-- <div class="text-start ms-5">
                     <h3><i class="bi-heart-fill">Favorite</i></h3>
                 </div> -->
@@ -69,9 +73,6 @@
 
 
                                 <a class="badge bg-secondary text-decoration-none link-light" href="/<%= projects.img %>" download="/<%= projects.img %>" target="_blank">Pull Sketch</a>
-
-
-                                <!-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">Pull File</a> -->
                                 <p class="lead">
                                     <%= projects.repoDescription %>
                                 </p>

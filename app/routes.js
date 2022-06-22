@@ -102,8 +102,8 @@ module.exports = function (app, passport, db, ObjectId, multer) {
     console.log(projectId)
     db.collection('repositories').findOneAndDelete({ _id: projectId }, (err, result) => {
       if (err) return res.send(500, err);
-      // res.send('Comment deleted!')
-      res.redirect('/portfolioPage')
+      res.send('Comment deleted!')
+      // res.redirect('/portfolioPage')
     })
   })
 
@@ -124,7 +124,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
     let projectId = ObjectId(req.params.projectId)
     let userId = req.user._id
     let userF = req.user.local.fName
-    db.collection('repositories').findOneAndUpdate({ _id: projectId }, { $push: { comments: { comment: req.body.comment, userId: userId, userFName: userF, likes: 0, img: 'images/uploads/' + req.file.filename } } }), ((err, result) => {
+    db.collection('repositories').findOneAndUpdate({ _id: projectId }, { $push: { comments: { comment: req.body.comment, userId: userId, userFName: userF, likes: 0} } }), ((err, result) => {
       if (err) return res.send(err);
       console.log('COMMENT SAVED to database')
       // res.redirect(`/projectProfile/${projectId}`)
@@ -170,6 +170,25 @@ module.exports = function (app, passport, db, ObjectId, multer) {
             user: req.user.local,
             info: infoFromUser,
             projects: repos
+          })
+        })
+      })
+    })
+  });
+
+  app.get('/searchResults', isLoggedIn, function (req, res) {
+    // let searchId = (req.body.searchId).toLowerCase()
+    let searchId = searchId
+    console.log(searchId)
+    db.collection('repositories').find({category: searchId}).toArray((err1, result) => {
+      console.log('SEARCH RESULT',result)
+      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+        db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
+          if (err) return console.log(err)
+          res.render('searchPage.ejs', {
+            user: req.user.local,
+            info: infoFromUser,
+            projects: result
           })
         })
       })
@@ -271,9 +290,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
     console.log(eventId)
     db.collection('events').findOneAndDelete({ _id:eventId }, (err, result) => {
       if (err) return res.send(500, err)
-      // res.send('Comment deleted!')
       res.redirect('/events')
-      // res.render('events.ejs')
     })
   })
   // ABOUT PAGE

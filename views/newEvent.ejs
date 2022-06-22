@@ -24,23 +24,16 @@
                         <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
                         <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
                             <ul class="dropdown-menu projects-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
                                 <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
                                     <div class="dropdown">
                                         <% for(var i=0; i<projects.length; i++) {%>
-                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].eventName %></a>
+                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
                                             </li>
                                         <% } %>
                                     </div>
-                                <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
-                                <div class="dropdown">
-                                    <% for(var i=0; i<projects.length; i++) {%>
-                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].eventName %></a>
-                                        </li>
-                                    <% } %>
-                                </div>  -->
                             </ul>
                         </li>
                         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
@@ -51,6 +44,9 @@
     </header>
     <main class="py-5 newRepoMain">
         <section class="white pt-5 pb-5 newRF">
+            <div class="col ms-5 text-start">  
+                <a href="/events"><button><h8>Cancel & Back To Events</h8></button></a><br>
+            </div>
             <h3 class="text-center mfb24R peru">New Event</h3>
             <div class="container px-4 px-lg-5 my-5 text-center">
                 <form action="/newevent" enctype="multipart/form-data" method="POST">
