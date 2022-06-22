@@ -8,12 +8,12 @@ Being low-income there being restraints surrounding how to collaborate using the
 
 And then it hit me! I sipped my beer and said "Sevi, what you need is a github for animators but I have no idea how to do that". And then I decided to f*ck around and find out.  
 
-So, today I present to you the most recent version of Collabor8. -->
+So, today I present to you the most recent version of Collabor8.  -->
 
 ## Collabor8 Imagined
 Collabor8, in all of it's infancy, is an animator repository application designed for large groups of animators working collaboratively on projects. Ideally a GitHub for Procreate! Collabor8 is a free tool designed for low income creators looking to cooperatively create animation art. This tool allows lower income and independent individual/group animators to track, organize, edit, and update collective animation works in a streamlined and trackable fashion.
 
-**Link to project:** Collabor8 Live Coming Soon
+<!-- **Link to project:** Collabor8 Live Coming Soon -->
 
 ## Directory:
 #### passport.js:
@@ -36,7 +36,7 @@ Collabor8, in all of it's infancy, is an animator repository application designe
 *Deployment*: Heroku
 
 
-Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write *something*. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold. 
+<!-- Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write *something*. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold.  -->
 
 ## Features & Optimizations
 
@@ -91,11 +91,11 @@ Search
     ScratchPad Page with API - Screenshots and Saves to Sketches
     Add multiple box checker to add genre tags and post with new repo/new push
 
-<!-- You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews! -->
+You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews! 
 
 ## Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing. -->
+No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.  -->
 
 ![homepage](https://user-images.githubusercontent.com/22268455/172026318-ab0369d5-1eb8-4037-9223-54672ab20311.png)
 ![profileGalaxyOthersSelfView](https://user-images.githubusercontent.com/22268455/172026323-6c03693d-4100-4be9-8c5d-4a670f62bbfc.png)
