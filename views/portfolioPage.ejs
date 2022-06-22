@@ -15,32 +15,40 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
             <div>
-                <a class="navbar-brand" href="/"><img src="/images/logo.png" class="logo"><strong>Collabor8</strong></a>
+                <img src="/images/logo.png" class="logo">
+            </div>
+            <div>
+                <a class="navbar-brand" href="/"><strong>Collabor8</strong></a>
             </div>
             <div class="container px-0 px-lg-0">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
                         <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown"
+                                href="projectsFrame" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Projects</a>
                             <ul class="dropdown-menu projects-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
-                                <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
-                                    <div class="dropdown">
-                                        <% for(var i=0; i<projects.length; i++) {%>
-                                            <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
-                                            </li>
-                                        <% } %>
-                                    </div>
-                                <!-- <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Others</h3></a></li>
+                                <li><a class="dropdown-item" href="/projectsFrame">
+                                        <h3>All Projects</h3>
+                                    </a></li>
+                                <li><a class="dropdown-item mkgr" href="#!">
+                                        <h3>Owned x Me</h3>
+                                    </a></li>
                                 <div class="dropdown">
                                     <% for(var i=0; i<projects.length; i++) {%>
-                                        <li class="sub-menu"><a href="#" class="dropdown-item " data-toggle="dropdown"><%= projects[i].repoName %></a>
+                                        <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>"
+                                                class="dropdown-item " data-toggle="dropdown">
+                                                <%= projects[i].repoName %>
+                                            </a>
                                         </li>
-                                    <% } %>
-                                </div>  -->
+                                        <% } %>
+                                </div>
                             </ul>
                         </li>
                         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>

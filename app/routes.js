@@ -178,26 +178,8 @@ module.exports = function (app, passport, db, ObjectId, multer) {
 
   //Search Results Page  
   // RESULT RENDER PAGE
-  // app.get('/projectsFrame', isLoggedIn, function (req, res) {
-  //   let category = req.params.category
-  //   console.log(category)
-  //   db.collection('repositories').find({type:'repo'}).toArray((err1, repos) => {
-  //     console.log(repos)
-  //     db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
-  //       db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
-  //         if (err) return console.log(err)
-  //         res.render('projectFrame.ejs', {
-  //           user: req.user.local,
-  //           info: infoFromUser,
-  //           projects: repos
-  //         })
-  //       })
-  //     })
-  //   })
-  // });
-  
    app.get('/projectsFrame', isLoggedIn, function (req, res) {
-    db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
+    db.collection('repositories').find({ type:'repo' }).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
