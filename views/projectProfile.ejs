@@ -47,6 +47,9 @@
                 </button><br>
             </div>
             <% } %>
+                <!-- <div class="text-start ms-5">
+                    <h3><i class="bi-heart-fill">Favorite</i></h3>
+                </div> -->
                 <section>
                     <div>
                         <!-- <span><i class="bi-trash"></i></span> -->
@@ -60,9 +63,14 @@
                                     alt="..." /></div>
                             <header class="col-md-6">
                                 <h1 class="mb-1 mkgreen">Overview</h1>
+                                <div class="text-muted fst-italic mb-2"> Owned by:<%= projects.creator %></div>
                                 <div class="text-muted fst-italic mb-2"> Created June 22, 2022</div>
                                 <a class="badge bg-secondary text-decoration-none link-light" href="#!">Push New</a>
+
+
                                 <a class="badge bg-secondary text-decoration-none link-light" href="/<%= projects.img %>" download="/<%= projects.img %>" target="_blank">Pull Sketch</a>
+
+
                                 <!-- <a class="badge bg-secondary text-decoration-none link-light" href="#!">Pull File</a> -->
                                 <p class="lead">
                                     <%= projects.repoDescription %>
@@ -73,7 +81,7 @@
                 </section>
                 <!-- Make Comments-->
                 <section class="row">
-                    <div class="makePost text-center commentsbox col-md-6">
+                    <div class="makePost text-center commentsbox col-md-5">
                         <form action="/comments/<%= projects._id%>" method="POST">
                             <h3 class="mkgreen">Post to <%= projects.repoName%> Collabor8 Board</h3>
                             <textarea class="mb-4" name="comment"></textarea><br>
@@ -85,7 +93,7 @@
                         </form>
                     </div>
                     <!-- Posted Comments -->
-                    <div class="commentsbox col-md-6">
+                    <div class="commentsbox col-md-5">
                         <h3 class="mkgreen">Posts</h3>
                         <ul class=" text-start">
                             <% for(var i=0; i<projects.comments.length; i++) {%>
@@ -104,7 +112,7 @@
     </main>
     <footer class="py-4 bg-footer">
         <div class="container px-0 .px-sm-0">
-            <strong>
+            <strong text-end>
                 <a class="peru" href="/about">About</a>
                 <a class="peru" href="#!">Settings</a>
                 <a class="peru" href="#!">Contact</a>

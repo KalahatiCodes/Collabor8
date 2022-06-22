@@ -46,6 +46,15 @@ module.exports = function (app, passport, db, ObjectId, multer) {
     res.redirect('/portfolioPage')
   })
 
+  // app.post('/portfolioPage', upload.single('file-to-upload'), (req, res) => {
+  //   let user = req.user._id
+  //   db.collection('userPortfolioInfo').save({fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, aboutMe: req.body.aboutMe, img: 'images/uploads/' + req.file.filename}, (err, res) => {
+  //     if (err) return console.log(err)
+  //     console.log('saved to database')
+  //     res.redirect('/portfolioPage')
+  //   })
+  // })
+
   // PROJECTS SECTION  
   // New Repository
   app.get('/newRepo', isLoggedIn, function (req, res) {
@@ -66,7 +75,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
 
   app.post('/newRepo', upload.single('file-to-upload'), (req, res) => {
     let user = req.user._id
-    db.collection('repositories').save({ img: 'images/uploads/' + req.file.filename, creator: req.user.local.email, creatorId: user, repoName: req.body.repoName, repoDescription: req.body.repoDescript, comments: [] }, (err, result) => {
+    db.collection('repositories').save({creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript,category: req.body.category, img: 'images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/portfolioPage')
@@ -141,61 +150,6 @@ module.exports = function (app, passport, db, ObjectId, multer) {
         })
   })
 
-  // app.put('/newLike', (req, res) => {
-  //   console.log(req.body)
-  //   // let id = ObjectId(req.body.projectId)
-  //   db.collection('repositories')
-  //   .findOneAndUpdate({comment:req.body.comment},{ 
-  //   $set:{likes:req.body.likes+1}},{
-  //     sort: {_id: -1},
-  //     upsert: true
-  //   },
-  //   (err, result) => {
-  //     if (err) return res.send(err)
-  //     console.log('RESULT',result)
-  //     res.send(result)
-  //   })
-  // })
-
-  // app.put('/newLike', (req, res) => {
-  //   console.log(req.body)
-  //   // let id = ObjectId(req.body.projectId)
-  //   db.collection('repositories')
-  //   .findOneAndUpdate({'comments.comment':req.body.comment},
-  //   [{$set:{
-  //     'likes.$numberInt':Number(req.body.likes)+1}}],
-  //     {
-  //     sort: {_id: -1},
-  //     upsert: true
-  //   },
-  //   (err, result) => {
-  //     if (err) return res.send(err)
-  //     console.log('RESULT',result)
-  //     res.send(result)
-  //   })
-  // })
-
-  // app.put('/newLike', (req, res) => {
-  //     console.log(req.body)
-  //     console.log(req.body.likes)
-  //     // let id = ObjectId(req.body.projectId)
-  //     db.collection('repositories')
-  //     .findOneAndUpdate([{comment:req.body.comment}],
-  //     [{$set:{
-  //       likes: req.body.likes +1 }}],
-  //       {
-  //       sort: {_id: -1},
-  //       upsert: true
-  //     },
-  //     (err, result) => {
-  //       if (err) return res.send(err)
-  //       console.log('RESULT',result)
-  //       res.send(result)
-  //     })
-  //   })
-
-
-
   app.delete('/deleteComment', (req, res) => {
     db.collection('repositories').findOneAndDelete({ comments: comment.req.body.comment }, (err, result) => {
       if (err) return res.send(500, err)
@@ -205,9 +159,11 @@ module.exports = function (app, passport, db, ObjectId, multer) {
 
   // SEARCH SECTION
   app.get('/search', isLoggedIn, function (req, res) {
-    db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
+    let category = ObjectId(req.params.category)
+    console.log(category)
+    db.collection('repositories').find({type:'repo', category: category}).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err1, infoFromUser) => {
+      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('search.ejs', {
@@ -219,8 +175,28 @@ module.exports = function (app, passport, db, ObjectId, multer) {
       })
     })
   });
+
   //Search Results Page  
-  app.get('/projectsFrame', isLoggedIn, function (req, res) {
+  // RESULT RENDER PAGE
+  // app.get('/projectsFrame', isLoggedIn, function (req, res) {
+  //   let category = req.params.category
+  //   console.log(category)
+  //   db.collection('repositories').find({type:'repo'}).toArray((err1, repos) => {
+  //     console.log(repos)
+  //     db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+  //       db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
+  //         if (err) return console.log(err)
+  //         res.render('projectFrame.ejs', {
+  //           user: req.user.local,
+  //           info: infoFromUser,
+  //           projects: repos
+  //         })
+  //       })
+  //     })
+  //   })
+  // });
+  
+   app.get('/projectsFrame', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
@@ -235,6 +211,21 @@ module.exports = function (app, passport, db, ObjectId, multer) {
       })
     })
   });
+  // app.get('/projectsFrame', isLoggedIn, function (req, res) {
+  //   db.collection('repositories').find({ type: 'repos' }).toArray((err1, repos) => {
+  //     console.log('GET PROJECT FRAME IS WORKING',repos)
+  //     db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+  //       db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
+  //         if (err) return console.log(err)
+  //         res.render('projectsFrame.ejs', {
+  //           user: req.user.local,
+  //           info: infoFromUser,
+  //           projects: repos
+  //         })
+  //       })
+  //     })
+  //   })
+  // });
 
   // EVENTS SECTION
   app.get('/events', function (req, res) {
@@ -262,7 +253,8 @@ module.exports = function (app, passport, db, ObjectId, multer) {
       console.log(result[0])
       if (err) return console.log(err)
       res.render('eventPage.ejs', {
-        events: result[0]
+        events: result[0],
+        user: req.user.local
       })
     })
   })
@@ -276,7 +268,8 @@ module.exports = function (app, passport, db, ObjectId, multer) {
           res.render('newEvent.ejs', {
             user: req.user.local,
             info: infoFromUser,
-            projects: repos
+            projects: repos,
+            events: result
           })
         })
       })
@@ -285,12 +278,22 @@ module.exports = function (app, passport, db, ObjectId, multer) {
   app.post('/newEvent', upload.single('file-to-upload'), (req, res) => {
     let user = req.user._id
     db.collection('events').save({ type: 'event', img: 'images/uploads/' + req.file.filename, creator: req.user.local.email, creatorId: user, eventName: req.body.eventName, eventDescription: req.body.eventDescript, eventLocation: req.body.eventLocation, eventDate: req.body.eventDate }, (err, result) => {
+      console.log(result)
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/events')
     })
   })
-
+  app.delete('/deleteEvent', (req, res) => {
+    let eventId = ObjectId(req.body.eventId)
+    console.log(eventId)
+    db.collection('events').findOneAndDelete({ _id:eventId }, (err, result) => {
+      if (err) return res.send(500, err)
+      // res.send('Comment deleted!')
+      res.redirect('/events')
+      // res.render('events.ejs')
+    })
+  })
   // ABOUT PAGE
   app.get('/about', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
@@ -307,6 +310,9 @@ module.exports = function (app, passport, db, ObjectId, multer) {
       })
     })
   });
+  
+
+  
   // AUTH
   app.get('/signIn', function (req, res) {
     res.render('login.ejs', { message: req.flash('loginMessage') });

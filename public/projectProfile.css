@@ -11345,4 +11345,8 @@ button{
   padding: 1rem;
   border: 1px solid gray;
   background-color: whitesmoke;
+  margin: 2rem;
+}
+.mklarge{
+  font-size: 5rem;
 }

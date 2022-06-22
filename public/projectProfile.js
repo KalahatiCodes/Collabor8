@@ -1,30 +1,20 @@
-let likes = document.getElementsByClassName("bi-hand-thumbs-up");
-let trash = document.getElementsByClassName("bi-trash");
+let deleteEvent = document.getElementById('deleteEvent')
 
-
-
-Array.from(likes).forEach(function(element) {
-  element.addEventListener('click', function(){
-    const comment = this.parentNode.parentNode.childNodes[1].innerText
-    const likes = parseFloat(this.parentNode.parentNode.childNodes[3].innerText)
-    fetch('/newLike', {
-      method: 'put',
-      headers: {'Content-Type': 'application/json'},
+  deleteEvent.addEventListener('click', function(){
+   let eventId = this.getAttribute('data-id')
+   console.log('EVENTID',eventId)
+    fetch('/deleteEvent', {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
-        'comment': comment,
-        'likes':likes,
-        'action': 'like'
+        'eventId':eventId
       })
-    })
-    .then(response => {
-      if (response.ok) return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      window.location.reload(true)
+    }).then(function (response) {
+      window.location.reload()
     })
   });
-});
 
 let deleteRepo = document.getElementById('deleteRepo')
 

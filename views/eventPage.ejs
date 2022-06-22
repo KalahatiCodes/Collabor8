@@ -31,6 +31,13 @@
         </nav>
     </header>
     <main class="py-5 beige text-center ps-5 pe-5">
+        <% if (user.email === events.creator) { %>
+            <div class="text-end">
+                <button id="deleteEvent" data-id="<%= events._id%>">
+                    <h8>Delete Event</h8>
+                </button><br>
+            </div>
+            <% } %>
         <div class="text-start">  
             <a href="/events"><button><h8>Back to Events</h8></button></a><br>
         </div>
@@ -44,7 +51,7 @@
                     <header class="col-md-6">
                         <h1 class="mb-1 mkgreen">Overview</h1>
                         <div class="text-muted fst-italic mb-2"> Location: <%= events.eventLocation %></div>
-                        <div class="text-muted fst-italic mb-2"> Event Date: June 31, 2022</div>
+                        <div class="text-muted fst-italic mb-2"> <%= events.eventDate %></div>
                         <p class="lead"><%= events.eventDescription %></p>
                     </header>
                 </div>

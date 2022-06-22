@@ -49,9 +49,7 @@
     </header>
     <main class="py-5 newRepoMain">
         <section class="white pt-5 pb-5 newRF">
-            <h1 class="text-center mfb24R peru">
-                New Event
-            </h1>
+            <h3 class="text-center mfb24R peru">New Event</h3>
             <div class="container px-4 px-lg-5 my-5 text-center">
                 <form action="/newevent" enctype="multipart/form-data" method="POST">
                     <p class="text-left peru">
@@ -59,7 +57,9 @@
                     </p>
                     <input class="nameText mb-4" type="text" name="eventName" placeholder="Name"><br>
                     <input class="nameText mb-4" type="text" name="eventLocation" placeholder="Event Location"><br>
-                    <input type=“date” placeholder=“date” name=“eventDate” required pattern=“\d{4}-\d{2}-\d{2}“>
+                    <input class="nameText mb-4" type="text" name=“eventDate” placeholder="Event Date & Time"><br>
+                    <!-- <input type=“date” placeholder=Date name=“eventDate” required pattern=“\d{4}-\d{2}-\d{2}“> -->
+                    <!-- <input class="mb-3" type="datetime-local" placeholder=Date name=“eventDate” id="Test_DatetimeLocal"> -->
                     <p class="text-left peru">
                      Description
                     </p>

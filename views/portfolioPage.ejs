@@ -83,9 +83,9 @@
                     <div id="socialsList">
                         <h3 class="peru"> Social </h3>
                             <ul class="icons">
-                                <li><span><i id="twitterURL" class="fa fa-twitter" aria-hidden="true" href="https://twitter.com/KalahatiCodes" target="_blank"></i> Twitter</span></li>
-                                <li><span><i id="linkedInURL"class="fa fa-linkedin" aria-hidden="true" href="https://www.linkedin.com/in/laceytyquiengco-greene/" target="_blank"></i> Linked In</span></li>
-                                <li ><span><i id="instagramURL" class="fa fa-instagram" aria-hidden="true" href="https://instagram.com/KalahatiHoney" target="_blank"></i> Instagram</span></li>
+                                <li><a target="_blank" href="https://twitter.com/KalahatiCodes" id="twitterURL"><span><i  class="fa fa-twitter" aria-hidden="true" target="_blank"></i> Twitter</span></a></li>
+                                <li><a target="_blank" href="https://www.linkedin.com/in/laceytyquiengco-greene/" id="linkedInURL"><span><i id="linkedInURL" class="fa fa-linkedin" aria-hidden="true"></i> Linked In</span></a></li>
+                                <li><a id="instagramURL" href="https://instagram.com/KalahatiHoney" target="_blank"><span><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</span></a></li>
                             </ul>
                         <form id="editSocialsList" class="hidden">
                             <textarea name="newInstagramURL" id="newInstagramURL" placeholder="Instagram URL"></textarea><br>
@@ -97,7 +97,7 @@
                 </div>
             </section>
             <section class="col-lg-8">
-                <h1 class="text-center peru">Highlighted Projects</h1>
+                <h3 class="text-center dkgfont">Highlighted Projects</h3>
                 <div class="row">
                     <% for(var i=0; i<projects.length; i++) {%>
                         <a class="text-decoration-none text col-md-3 bubble oj" href="/projectProfile/<%= projects[i]._id %>"><h4><%= projects[i].repoName %></h4></a>
@@ -105,13 +105,41 @@
                 </div>
             </section>
         </div>
-        <div class="row">
-            <div class="grid">
+        <!-- <div class="row">
+            <div class="grid graph">
                 <ul class="months"></ul>
                 <ul class="days"></ul>
                 <ul class="squares"></ul>
             </div>
-        </div>
+        </div> -->
+        <!-- <div class="grid graph">
+            <ul class="months">
+              <li>Jan</li>
+              <li>Feb</li>
+              <li>Mar</li>
+              <li>Apr</li>
+              <li>May</li>
+              <li>Jun</li>
+              <li>Jul</li>
+              <li>Aug</li>
+              <li>Sep</li>
+              <li>Oct</li>
+              <li>Nov</li>
+              <li>Dec</li>
+            </ul>
+            <ul class="days">
+              <li>Sun</li>
+              <li>Mon</li>
+              <li>Tue</li>
+              <li>Wed</li>
+              <li>Thu</li>
+              <li>Fri</li>
+              <li>Sat</li>
+            </ul>
+            <ul class="squares">
+              added via javascript -->
+            <!-- </ul>
+          </div>        -->
     </main>   
     <footer class="py-4 bg-footer">
         <div class="container px-0 .px-sm-0">
@@ -125,5 +153,6 @@
         </div>
     </footer>
 <script src="/portfolioPage.js"></script>
+<script src="/squares.js"></script>
 </body>
 </html>

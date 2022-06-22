@@ -234,12 +234,12 @@ sup {
   top: -0.5em;
 }
 
-a {
-  color: #0d6efd;
-  text-decoration: underline;
+a, li {
+  color: black;
+  text-decoration: none;
 }
 a:hover {
-  color: #0a58ca;
+  color: peru;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -11357,6 +11357,10 @@ main{
 .dkgreen{
   background-color:#b7b7a4;
 }
+.dkgfont{
+  color:#b7b7a4;
+  /* color: lightskyblue; */
+}
 .green{
   background-color:#d4d4c3;
 }
@@ -11430,4 +11434,6 @@ ul {
 .newRF{
   border: 2px solid peru;
 }
-
+.bubble:hover, button:hover {
+  background-color:#d4d4c3;
+}
