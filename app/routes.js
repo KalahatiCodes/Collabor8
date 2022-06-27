@@ -75,7 +75,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
 
   app.post('/newRepo', upload.single('file-to-upload'), (req, res) => {
     let user = req.user._id
-    db.collection('repositories').save({creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript,category: req.body.category, img: 'images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
+    db.collection('repositories').save({creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript,category: req.body.category, img: '/images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/portfolioPage')
@@ -176,19 +176,19 @@ module.exports = function (app, passport, db, ObjectId, multer) {
     })
   });
 
-  app.get('/searchResults', isLoggedIn, function (req, res) {
+  app.get('/searchPage/:cat', isLoggedIn, function (req, res) {
     // let searchId = (req.body.searchId).toLowerCase()
-    let searchId = searchId
-    console.log(searchId)
-    db.collection('repositories').find({category: searchId}).toArray((err1, result) => {
-      console.log('SEARCH RESULT',result)
+    let catId = req.params.cat
+    console.log(catId)
+    db.collection('repositories').find({category: catId}).toArray((err1, search) => {
+      console.log('SEARCH RESULT',search)
       db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('searchPage.ejs', {
             user: req.user.local,
             info: infoFromUser,
-            projects: result
+            search
           })
         })
       })
