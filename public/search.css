@@ -11340,6 +11340,6 @@ button{
 .lg{
   font-size: 6rem;
 }
-/* .sub-menu2:hover .our-pick-menu {
-  display: block;
-} */
+.pa {
+  padding: 9rem 0 9rem 0;
+}
