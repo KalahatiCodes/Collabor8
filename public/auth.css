@@ -1,14 +1,27 @@
+/* Shape */
 body {
   background: url("/images/blankbub.png") no-repeat center center fixed;
   background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
 }
-#sIBody {
-  padding:5rem 30rem;
+#loginPage,
+#signUpPage {
+  color: peru;
+  border: 6px solid peru;
+  background-color: white;
+  width: fit-content;
 }
-#sUBody {
-  padding:1rem 30rem;
+#loginPage {
+  padding: 3rem 5rem;
+  margin-top: 3rem;
 }
+#signUpPage {
+  padding: 1rem 3rem;
+  margin-top: 3rem;
+}
+/* Details */
 .loglink{
   color: black;
 }
@@ -31,32 +44,7 @@ input.form-control {
   margin: 1rem 0;
 }
 
-#loginPage,
-#signUpPage {
-  color: peru;
-  border: 6px solid peru;
-  background-color: white;
-  width: fit-content;
-}
-#loginPage {
-  padding: 3rem 5rem;
-  margin-top: 3rem;
-}
-#signUpPage {
-  padding: 1rem 3rem;
-  margin-top: 3rem;
-}
-
 
 @media (max-width:800px) {
 
-  /* #loginPage,
-  #signUpPage {
-    width: auto;
-    height: auto;
-  } */
-  #sIBody, #sUBody {
-    padding: auto;
-    margin: auto;
-  }
 }
