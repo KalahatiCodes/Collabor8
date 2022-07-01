@@ -11,7 +11,7 @@ And then it hit me! I sipped my beer and said "Sevi, what you need is a github f
 So, today I present to you the most recent version of Collabor8.  -->
 
 ## Collabor8 Imagined
-Collabor8, in all of it's infancy, is an animator repository application designed for large groups of animators working collaboratively on projects. Ideally a GitHub for Procreate! Collabor8 is a free tool designed for low income creators looking to cooperatively create animation art. This tool allows lower income and independent individual/group animators to track, organize, edit, and update collective animation works in a streamlined and trackable fashion.
+Collabor8, in all of it's infancy, is an animator repository application designed for large groups of animators working collaboratively on projects. Ideally a GitLab for Procreate! Collabor8 is a free tool designed for low income creators looking to cooperatively create animation art. This tool allows lower income and independent individual/group animators to track, organize, edit, and update collective animation works in a streamlined and trackable fashion.
 
 <!-- **Link to project:** Collabor8 Live Coming Soon -->
 

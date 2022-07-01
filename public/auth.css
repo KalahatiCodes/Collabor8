@@ -38,4 +38,11 @@ body{
         background-size: cover;
       }
 }
+
+@media (max-width:667px){
+  .loginPage, .signUpPage {
+    width: auto;
+    height: auto;
+  }
+}
  
