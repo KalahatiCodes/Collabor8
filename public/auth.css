@@ -57,9 +57,13 @@ input.form-control {
 
 @media (max-width:667px) {
 
-  .loginPage,
-  .signUpPage {
+  #loginPage,
+  #signUpPage {
     width: auto;
     height: auto;
+  }
+  #sIBody, #sUBody {
+    padding: auto;
+    margin: auto;
   }
 }
