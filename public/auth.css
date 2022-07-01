@@ -1,48 +1,58 @@
-body{
-    padding-top:0px;
+body {
+  padding-top: 0px;
+  background: url("/images/blankbub.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.btn,
+button {
+  background-color: bisque;
+  color: peru;
+  /* font-size: 2rem; */
+  margin: 10px;
+}
+
+p,
+label,
+span {
+  font-size: 2rem;
+}
+
+form-group {
+  font-size: 2.5rem;
+}
+
+#loginPage,
+#signUpPage {
+  color: peru;
+  border: 6px solid peru;
+  background-color: white;
+  padding: 50px;
+  margin-top: 100px;
+}
+
+.container {
+  margin-bottom: 200px;
+}
+
+/* @media (max-width: 1180px) {
+  .container {
+    width: 100%;
+  }
+} */
+
+@media (min-width: 1181px) {
+  body {
     background: url("/images/blankbub.png") no-repeat center center fixed;
     background-size: cover;
   }
-
-  .btn, button{
-    background-color: bisque;
-    color: peru;
-    /* font-size: 2rem; */
-    margin: 10px;
-  }
-  p, label, span{
-    font-size: 2rem;
-  }
-  form-group{
-    font-size:2.5rem;
-  }
-  #loginPage, #signUpPage{
-    color:peru;
-    border:6px solid peru;
-    background-color: white;
-    padding: 50px;
-    margin-top: 100px;
-  }
-  .container {
-    margin-bottom: 200px;
-  }
-  @media (max-width: 1180px){
-    .container {
-    /* width: 750px; */
-    width: 100%;
-    }
-}
-@media (min-width: 1181px){
-    body {
-        background: url("/images/blankbub.png") no-repeat center center fixed;
-        background-size: cover;
-      }
 }
 
-@media (max-width:667px){
-  .loginPage, .signUpPage {
+@media (max-width:667px) {
+
+  .loginPage,
+  .signUpPage {
     width: auto;
     height: auto;
   }
 }
- 
