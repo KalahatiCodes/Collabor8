@@ -1,4 +1,4 @@
-module.exports = function (app, passport, db, ObjectId, multer) {
+module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
 
   // Image Upload Code =======================================================================
   var storage = multer.diskStorage({
@@ -75,7 +75,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
 
   app.post('/newRepo', upload.single('file-to-upload'), (req, res) => {
     let user = req.user._id
-    db.collection('repositories').save({creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript,category: req.body.category, img: '/images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
+    db.collection('repositories').save({ creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript, category: req.body.category, img: '/images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/portfolioPage')
@@ -108,27 +108,29 @@ module.exports = function (app, passport, db, ObjectId, multer) {
   })
 
   // Comments
-  app.get('/comments/:projectId', isLoggedIn, function (req, res) {
-    let projectId = ObjectId(req.params.projectId)
-    console.log(projectId)
-    console.log('THIS THE REQ', req.body)
-    db.collection('repositories').find({ _id: projectId }).toArray((err, result) => {
-      if (err) return console.log(err)
-      res.redirect('/projectProfile/:projectId', {
-        'comments': result
-      })
-    })
-  });
+  // app.get('/comments/:projectId', isLoggedIn, function (req, res) {
+  //   let projectId = ObjectId(req.params.projectId)
+  //   console.log(projectId)
+  //   console.log('THIS THE REQ', req.body)
+  //   db.collection('repositories').find({ _id: projectId }).toArray((err, result) => {
+  //     if (err) return console.log(err)
+  //     res.redirect('/projectProfile', {
+  //       'comments': result
+  //     })
+  //   })
+  // });
 
-  app.post('/comments/:projectId', isLoggedIn, function (req, res) {
+
+  app.post('/projectProfile/:projectId', isLoggedIn, function (req, res) {
     let projectId = ObjectId(req.params.projectId)
+    let string = String(projectId)
     let userId = req.user._id
     let userF = req.user.local.fName
-    db.collection('repositories').findOneAndUpdate({ _id: projectId }, { $push: { comments: { comment: req.body.comment, userId: userId, userFName: userF, likes: 0} } }), ((err, result) => {
+    db.collection('repositories').findOneAndUpdate({ _id: projectId }, { $push: { comments: { comment: req.body.comment, userId: userId, userFName: userF, likes: 0 } } }), ((err, result) => {
       if (err) return res.send(err);
       console.log('COMMENT SAVED to database')
-      // res.redirect(`/projectProfile/${projectId}`)
-      res.send(result)
+      res.redirect('/projectProfile/'+ string)
+      // res.send(result)
     })
   })
 
@@ -161,7 +163,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
   app.get('/search', isLoggedIn, function (req, res) {
     let category = ObjectId(req.params.category)
     console.log(category)
-    db.collection('repositories').find({type:'repo', category: category}).toArray((err1, repos) => {
+    db.collection('repositories').find({ type: 'repo', category: category }).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
@@ -180,8 +182,8 @@ module.exports = function (app, passport, db, ObjectId, multer) {
     // let searchId = (req.body.searchId).toLowerCase()
     let catId = req.params.cat
     console.log(catId)
-    db.collection('repositories').find({category: catId}).toArray((err1, search) => {
-      console.log('SEARCH RESULT',search)
+    db.collection('repositories').find({ category: catId }).toArray((err1, search) => {
+      console.log('SEARCH RESULT', search)
       db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
@@ -197,8 +199,8 @@ module.exports = function (app, passport, db, ObjectId, multer) {
 
   //Search Results Page  
   // RESULT RENDER PAGE
-   app.get('/projectsFrame', isLoggedIn, function (req, res) {
-    db.collection('repositories').find({ type:'repo' }).toArray((err1, repos) => {
+  app.get('/projectsFrame', isLoggedIn, function (req, res) {
+    db.collection('repositories').find({ type: 'repo' }).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
@@ -288,7 +290,7 @@ module.exports = function (app, passport, db, ObjectId, multer) {
   app.delete('/deleteEvent', (req, res) => {
     let eventId = ObjectId(req.body.eventId)
     console.log(eventId)
-    db.collection('events').findOneAndDelete({ _id:eventId }, (err, result) => {
+    db.collection('events').findOneAndDelete({ _id: eventId }, (err, result) => {
       if (err) return res.send(500, err)
       res.redirect('/events')
     })
@@ -309,9 +311,9 @@ module.exports = function (app, passport, db, ObjectId, multer) {
       })
     })
   });
-  
 
-  
+
+
   // AUTH
   app.get('/signIn', function (req, res) {
     res.render('login.ejs', { message: req.flash('loginMessage') });

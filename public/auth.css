@@ -6,6 +6,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 #loginPage,
 #signUpPage {
   color: peru;
@@ -13,18 +14,26 @@ body {
   background-color: white;
   width: fit-content;
 }
+
 #loginPage {
   padding: 3rem 5rem;
   margin-top: 3rem;
 }
+
 #signUpPage {
   padding: 1rem 3rem;
   margin-top: 3rem;
 }
+
 /* Details */
-.loglink{
+html {
+  font-size: 16px;
+}
+
+.loglink {
   color: black;
 }
+
 .btn,
 button {
   background-color: bisque;
@@ -44,7 +53,58 @@ input.form-control {
   margin: 1rem 0;
 }
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
 
-@media (max-width:800px) {
-
+  body {
+    background: url("/images/blankbub.png") repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+  }
+  
+  #loginPage,
+  #signUpPage {
+    width: fit-content;
+  }
+  
+  #loginPage {
+    /* padding: 1rem; */
+    margin-top: 13rem;
+  }
+  
+  /* #signUpPage {
+    padding: 1rem;
+    margin-top: 1rem;
+  } */
+  
+  /* Details */
+  .loglink {
+    color: black;
+  }
+  
+  .btn,
+  button {
+    background-color: bisque;
+    color: peru;
+    border: 3px solid peru;
+    font-size: 3rem;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  p,
+  label,
+  span {
+    font-size: 3rem;
+  }
+  
+  input.form-control {
+    font-size: 3rem;
+    margin: 1rem 0;
+  }
+  h1{
+    font-size: 4rem;
+  }
 }

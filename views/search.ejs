@@ -11,37 +11,24 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
-            <div>
+        <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
+            <div class="hide">
                 <img src="/images/logo.png" class="logo">
             </div>
-            <div>
-                <a class="navbar-brand" href="/"><strong>Collabor8</strong></a>
+            <div class="centerHer">
+                <a class="navbar-brand title" href="/"><strong>Collabor8</strong></a>
             </div>
-            <div class="container px-0 px-lg-0">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="container px-0 px-lg-0 colBeige">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
-                        <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link" href="/portfolioPage">My Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
                         <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="projectsFrame" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
-                            <ul class="dropdown-menu projects-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/projectsFrame"><h3>All Projects</h3></a></li>
-                                <li><a class="dropdown-item mkgr" href="#!"><h3>Owned x Me</h3></a></li>
-                                    <div class="dropdown">
-                                        <% if (projects.creator === user.email){ %>
-                                            <% for(var i=0; i<projects.length; i++) {%>
-                                                <li class="sub-menu"><a href="projectProfile/<%= projects[i]._id %>"
-                                                        class="dropdown-item " data-toggle="dropdown">
-                                                        <%= projects[i].repoName %>
-                                                    </a>
-                                                </li>
-                                            <% } %>
-                                            <% } %>
-                                    </div>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="projectsFrame">Projects</a></li>
                         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
                     </ul>
                 </div>
@@ -53,12 +40,12 @@
         <div class="container col-lg-5 mt-5 mb-5">
             <div class="card mb-4">
                 <div class="card-header">Search</div>
-                <!-- <div class="card-body">
+                <div class="card-body">
                     <div class="input-group">
                         <input class="form-control" name="searchItem" type="text" placeholder="Enter project name or user name..." id="searchItem" aria-label="Enter search term..." aria-describedby="button-search"/>
                         <span id="buttonSearch"><button class="btn btn-primary" type="submit">Go!</button></span>
                     </div>
-                </div> -->
+                </div>
             </div>
             
             <div class="card mb-4">
@@ -92,7 +79,7 @@
         </div>
     </main>
     
-    <footer class="py-4 bg-footer">
+    <footer class="py-2 bg-footer">
         <div class="container px-0 .px-sm-0">
             <strong>
                     <a class="peru" href="/about">About</a>
@@ -104,6 +91,7 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="projectProfile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

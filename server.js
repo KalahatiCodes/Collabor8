@@ -1,3 +1,4 @@
+
 const express  = require('express');
 const app      = express();
 const port     = process.env.PORT || 7779;
@@ -23,10 +24,11 @@ let db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, ObjectId, multer, MongoClient);
+  require('./app/routes.js')(app, passport, db, ObjectId, multer, MongoClient, cookieParser);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
+
 
 // set up express app
 app.use(morgan('dev')); // log every request to the console
