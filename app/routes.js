@@ -1,7 +1,7 @@
 module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
 
   // Image Upload Code =======================================================================
-  var storage = multer.diskStorage({
+  const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, 'public/images/uploads')
     },
@@ -9,7 +9,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
       cb(null, file.fieldname + '-' + Date.now() + ".png")
     }
   });
-  var upload = multer({ storage: storage });
+  const upload = multer({ storage: storage });
 
   // LANDING SECTION
   app.get('/', function (req, res) {
@@ -20,12 +20,13 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
   app.get('/portfolioPage', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
+        console.log(userData[0])
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('portfolioPage.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData[0],
             projects: repos
           })
         })
@@ -38,34 +39,33 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
     res.redirect('/');
   });
 
-  app.post('/aboutMe', (req, res) => {
-    console.log(req.user.local.fName, 'saving')
-    db.collection('userPortfolioInfo')
-      .insertOne({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, aboutMe: req.body.aboutMe }
-      )
-    res.redirect('/portfolioPage')
-  })
-
-  // app.post('/portfolioPage', upload.single('file-to-upload'), (req, res) => {
-  //   let user = req.user._id
-  //   db.collection('userPortfolioInfo').save({fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, aboutMe: req.body.aboutMe, img: 'images/uploads/' + req.file.filename}, (err, res) => {
-  //     if (err) return console.log(err)
-  //     console.log('saved to database')
-  //     res.redirect('/portfolioPage')
-  //   })
+  // app.post('/userData', (req, res) => {
+  //   console.log(req.user.local.fName, 'saving')
+  //   db.collection('userData')
+  //     .insertOne({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, userName: req.body.userName, blurb: req.body.blurb, twitter: req.body.twitter, instagram: req.body.twitter, linkedIn: req.body.linkedIn, website: req.body.website, userPhoto: req.body.userPhoto }
+  //     )
+  //   res.redirect('/portfolioPage')
   // })
 
+  app.post('/userData', upload.single('file-to-upload'), (req, res) => {
+    db.collection('userData').save({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, userName: req.body.userName, blurb: req.body.blurb, twitter: req.body.twitter, instagram: req.body.twitter, linkedIn: req.body.linkedIn, website: req.body.website}, (err, result) => {
+      console.log(result)
+      if (err) return console.log(err)
+      console.log('saved to database')
+      res.redirect('/portfolioPage')
+    })
+  })
   // PROJECTS SECTION  
   // New Repository
   app.get('/newRepo', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err1, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err1, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('newRepo.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
             projects: repos
           })
         })
@@ -165,12 +165,12 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
     console.log(category)
     db.collection('repositories').find({ type: 'repo', category: category }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('search.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
             projects: repos
           })
         })
@@ -184,12 +184,12 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
     console.log(catId)
     db.collection('repositories').find({ category: catId }).toArray((err1, search) => {
       console.log('SEARCH RESULT', search)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('searchPage.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
             search
           })
         })
@@ -202,45 +202,30 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
   app.get('/projectsFrame', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ type: 'repo' }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('projectsFrame.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
             projects: repos
           })
         })
       })
     })
   });
-  // app.get('/projectsFrame', isLoggedIn, function (req, res) {
-  //   db.collection('repositories').find({ type: 'repos' }).toArray((err1, repos) => {
-  //     console.log('GET PROJECT FRAME IS WORKING',repos)
-  //     db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
-  //       db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
-  //         if (err) return console.log(err)
-  //         res.render('projectsFrame.ejs', {
-  //           user: req.user.local,
-  //           info: infoFromUser,
-  //           projects: repos
-  //         })
-  //       })
-  //     })
-  //   })
-  // });
 
   // EVENTS SECTION
   app.get('/events', function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('events').find({ type: 'event' }).toArray((err, result) => {
           console.log('EVENTS', result)
           if (err) return console.log(err)
           res.render('events.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
             projects: repos,
             events: result
           })
@@ -265,12 +250,12 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
   app.get('/newEvent', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err1, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err1, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('newEvent.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
             projects: repos,
             events: result
           })
@@ -299,12 +284,29 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
   app.get('/about', isLoggedIn, function (req, res) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
-      db.collection('userPortfolioInfo').find({ email: req.user.local.email }).toArray((err2, infoFromUser) => {
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('about.ejs', {
             user: req.user.local,
-            info: infoFromUser,
+            info: userData,
+            projects: repos
+          })
+        })
+      })
+    })
+  });
+
+  // SETUP PAGE
+  app.get('/setUp', isLoggedIn, function (req, res) {
+    db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
+      console.log(repos)
+      db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
+        db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
+          if (err) return console.log(err)
+          res.render('setUp.ejs', {
+            user: req.user.local,
+            info: userData,
             projects: repos
           })
         })
@@ -332,7 +334,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
 
 
   app.post('/signUp', passport.authenticate('local-signup', {
-    successRedirect: '/portfolioPage',
+    successRedirect: '/setUp',
     failureRedirect: '/signUp',
     failureFlash: true
   }));

@@ -1,4 +1,4 @@
-// Edit About Me Section
+// Update About Me Section
 let submit2Show = document.getElementById('aboutMeHide')
 let aboutMeDescript = document.getElementsById('aboutMeDescript')
 
@@ -8,8 +8,22 @@ function showAbout(click){
     aboutMeDescript.classList.toggle('hidden')
 }
  
+// Open New Social Links Input Form
+let socials = document.getElementById('editSocials')
+let openLinks = document.getElementById('openLinks')
+socials.addEventListener('click', editSocials)
 
+function editSocials(){
+    openLinks.classList.toggle('hidden')
+}
+//  Save New Social Links to Profile 
+let save = document.getElementById('saveSocials')
+save.addEventListener('click', saveSocials)
 
+let ig = document.getElementById('instagramURL')
+function saveSocials(){
+    ig.href = getElementById('newInstagramURL').value
+}
 
 
 

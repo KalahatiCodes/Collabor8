@@ -53,27 +53,27 @@
                     <h1 class="fw-bolder mb-1 peru">Welcome, <%= user.fName %>
                     </h1>
                     <span class="text-muted fst-italic mb-2">Collabor8er Since June 22, 2022</span><br>
-                    <a class="badge bg-secondary text-decoration-none link-light" id="editAboutMe" href="#!">Edit About
-                        Me</a>
+                    <span id="editAboutMe"><a class="badge bg-secondary text-decoration-none link-light" >Edit About
+                        Me </a></span>
                     <a id="editSocials" class="badge bg-secondary text-decoration-none link-light" href="#!">Edit
                         Socials</a>
                 </div>
                 <div>
-                    <figure class="mb-4"><img class="img-fluid rounded-circle" src="/images/Lacey.png" alt="..." />
+                    <figure class="mb-4"><img class="img-fluid rounded-circle" src="/images/blankprofile.png" alt="..." />
                     </figure>
                 </div>
                 <div class="mb-5">
                     <div class="aboutMe">
                         <h2 class="fw-bolder mb-4 mt-5 peru">About Me</h2>
-                        <div id="aboutMeDescript">
-                            <% if (info[0]) { %>
+                        <div class="orangeBox">
+                            <% if (info) { %>
                                 <p>
-                                    <%= info[0].aboutMe %>
+                                    <%= info.blurb %>
                                 </p>
                                 <% } else { %>
-                                    <form action="/aboutMe" method="post">
-                                        <textarea class="aboutText" name="aboutMe"
-                                            placeholder="Howdy <%= user.fName%>,&#10;&#10;Here is where you get to showcase yourself! Tell us the roots of your passion for animation, favorite styles/artists/pieces, what you're currently working on and what kind of Collabor8 projects you're interested in being apart of. Happy Collabor8ing, friend!"></textarea><br>
+                                    <form action="/userData" method="post">
+                                        <textarea class="aboutText" name="blurb"
+                                            placeholder="Hey <%= user.fName%>,&#10;&#10;Here is where you get to showcase yourself! Tell us the roots of your passion for animation, favorite styles/artists/pieces, what you're currently working on and what kind of Collabor8 projects you're interested in being apart of. Happy Collabor8ing, friend!"></textarea><br>
                                         <div class="text-center">
                                             <button type="submit">
                                                 <h8>Save About Me</h8>
@@ -86,23 +86,17 @@
                     <div id="socialsList">
                         <h3 class="peru"> Social </h3>
                         <ul class="icons">
-                            <li><a target="_blank" href="https://twitter.com/KalahatiCodes" id="twitterURL"><span><i
-                                            class="fa fa-twitter" aria-hidden="true" target="_blank"></i>
+                            <li><a aria-hidden="true" target="_blank" href="<%= info.twitter %>" id="twitterURL"><span><i
+                                            class="fa fa-twitter" ></i>
                                         Twitter</span></a></li>
-                            <li><a target="_blank" href="https://www.linkedin.com/in/laceytyquiengco-greene/"
+                            <li><a  href="<%= info.linkedIn %>"
                                     id="linkedInURL"><span><i id="linkedInURL" class="fa fa-linkedin"
                                             aria-hidden="true"></i> Linked In</span></a></li>
-                            <li><a id="instagramURL" href="https://instagram.com/KalahatiHoney" target="_blank"><span><i
+                            <li><a id="instagramURL" href="<%= info.instagram %>" target="_blank"><span><i
                                             class="fa fa-instagram" aria-hidden="true"></i> Instagram</span></a></li>
+                            <li><a id="instagramURL" href="<%= info.website %>" target="_blank"><span><i
+                                                class="fa fa-globe" aria-hidden="true"></i> Website</span></a></li>
                         </ul>
-                        <form id="editSocialsList" class="hidden">
-                            <textarea name="newInstagramURL" id="newInstagramURL"
-                                placeholder="Instagram URL"></textarea><br>
-                            <textarea name="newTwitterURL" id="newTwitterURL" placeholder="Twitter URL"></textarea><br>
-                            <textarea name="newLinkedInURL" id="newLinkedInURL"
-                                placeholder="LinkedIn URL"></textarea><br>
-                            <button id="saveSocials" type="submit">Save Socials</button>
-                        </form>
                     </div>
                 </div>
             </section>
@@ -126,7 +120,7 @@
             <div class="btm1">
                 <strong>
                     <a class="peruF" href="/about">About</a>
-                    <a class="peruF" href="#!">Settings</a>
+                    <a class="peruF" href="settings">Settings</a>
                     <a class="peruF" href="#!">Contact</a>
                 </strong>
             </div>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>
+        <%= user.fName %>'s Portfolio
+    </title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="/portfolioPage.css" rel="stylesheet" />
+    <linke href="/squares.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <header>
+        <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light py-4 px-5">
+            <div class="hide">
+                <img src="/images/logo.png" class="logo">
+            </div>
+            <div class="centerHer">
+                <a class="navbar-brand title" href="/"><strong>Collabor8</strong></a>
+            </div>
+            <div class="container px-0 px-lg-0 colBeige">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link" href="portfolioPage">My Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="events">Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projectsFrame">Projects</a></li>
+                        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="beige">
+        <div class="container mt-5 row text-center">
+            <section class="col-lg-4">
+                <h2 class="fw-bolder mb-4 mt-5 peru">Portfolio Settings</h2>
+                <div class="orangeBox">
+                    <!-- <form action="/profilePic" enctype="multipart/form-data" method="POST">
+                        <input type="file" placeholder="eventFile" name="file-to-upload">
+                        </p>
+                        <button type="submit">
+                            Save New Profile Photo
+                        </button>
+                    </form><br> -->
+                    <form action="/userData" method="post">
+                        <h1><span class="fa fa-leaf"></span> Portfolio Page</h1>
+                        <form action="/signup" method="post">
+                            <div class="form-group">
+                                <label>LinkedIn</label><br>
+                                <input type="text" class="form-control" name="linkedIn" placeholder="https://www.linkedin.com/in/laceytyquiengco-greene/">
+                            </div>
+                            <div class="form-group">
+                                <label>Instagram</label><br>
+                                <input type="text" class="form-control" name="instagram" placeholder="https://instagram.com/KalahatiCodes">
+                            </div>
+                            <div class="form-group">
+                                <label>Twitter</label><br>
+                                <input type="text" class="form-control" name="twitter" placeholder="https://twitter.com/KalahatiCodes">
+                            </div>
+                            <div class="form-group">
+                                <label>Your Website</label><br>
+                                <input type="text" class="form-control" name="website" placeholder="https://laceytyquiengco-greene.netlify.app/">
+                            </div>
+                            <label>Blurb</label><br>
+                        <textarea class="aboutText" name="blurb"
+                            placeholder="Hey <%= user.fName%>,&#10;&#10;Here is where you get to showcase yourself! Tell us the roots of your passion for animation, favorite styles/artists/pieces, what you're currently working on and what kind of Collabor8 projects you're interested in being apart of. Happy Collabor8ing, friend!"></textarea><br>
+                            <!-- <label>Portfolio Photo</label><br>
+                            <input type="file" placeholder="eventFile" name="file-to-upload">
+                        <div class="text-center"> -->
+                            <button type="submit">
+                                <h8>Save About Me</h8>
+                            </button>
+                        </div>
+                    </form> 
+            </section>
+            <section class="col-lg-4">
+                <h2 class="fw-bolder mb-4 mt-5 peru">Collabor8 Theme</h2>
+                <div class="orangeBox">
+                    <h1><span class="fa fa-leaf"></span>Color Scheme</h1>
+                    <img>
+                </div>
+
+
+
+
+
+
+
+            </section>
+
+            <section class="col-lg-4">
+                <h2 class="fw-bolder mb-4 mt-5 peru">Account Information</h2>
+                <div>
+                    <form class="orangeBox" id="openLinks">
+                        <h1><span class="fa fa-leaf"></span>Account Details</h1>
+                        <textarea name="newUserName" id="newUserName" placeholder="newUserName"></textarea><br>
+                        <textarea name="newEmail" id="newEmail" placeholder="newEmail"></textarea><br>
+                        <textarea name="newPassword" id="newPassword" placeholder="newPassword"></textarea><br>
+                        <button id="saveAccountSettings" type="submit">Save New Account Setings</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+    </main>
+    <footer class="py-2 bg-footer">
+        <div class="container px-0 .px-sm-0 footer">
+            <div class="btm1">
+                <strong>
+                    <a class="peruF" href="/about">About</a>
+                    <a class="peruF" href="#!">Settings</a>
+                    <a class="peruF" href="#!">Contact</a>
+                </strong>
+            </div>
+            <div class="btm2">
+                <span class="mkgr">Copyright &copy; Collabor8 2022</span>
+            </div>
+        </div>
+    </footer>
+    <script src="/portfolioPage.js"></script>
+    <script src="/squares.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
