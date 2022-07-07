@@ -163,8 +163,9 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
   // SEARCH SECTION
   app.get('/search', isLoggedIn, function (req, res) {
     let category = ObjectId(req.params.category)
+    let serachItem = req.body.searchItem
     console.log(category)
-    db.collection('repositories').find({ type: 'repo', category: category }).toArray((err1, repos) => {
+    db.collection('repositories').find({ type: 'repo', category: category }||{type:'repo', creator: req.body.searchItem}||{type:'repo', userName: req.body.userName}).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
@@ -201,7 +202,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
   //Search Results Page  
   // RESULT RENDER PAGE
   app.get('/projectsFrame', isLoggedIn, function (req, res) {
-    db.collection('repositories').find({ type: 'repo' }).toArray((err1, repos) => {
+    db.collection('repositories').find({ type: 'repo'}).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
         db.collection('users').find({ email: req.user.local.email }).toArray((err, result) => {
@@ -221,6 +222,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
     db.collection('repositories').find({ creator: req.user.local.email }).toArray((err1, repos) => {
       console.log(repos)
       db.collection('userData').find({ email: req.user.local.email }).toArray((err2, userData) => {
+        console.log('GET THE CITY',userData)
         db.collection('events').find({ type: 'event' }).toArray((err, result) => {
           console.log('EVENTS', result)
           if (err) return console.log(err)
