@@ -48,6 +48,7 @@
                 </button></a>
         </div>
         <div class="container mt-5 row">
+            <% if (info) { %>
             <section class="col-lg-4">
                 <div class="mb-4">
                     <h1 class="fw-bolder mb-1 peru">Welcome, <%= user.fName %>
@@ -63,43 +64,125 @@
                     </figure>
                 </div>
                 <div class="mb-5">
-                    <div class="aboutMe">
-                        <h2 class="fw-bolder mb-4 mt-5 peru">About Me</h2>
-                        <div class="orangeBox">
-                            <% if (info) { %>
-                                <p>
-                                    <%= info.blurb %>
-                                </p>
-                                <% } else { %>
-                                    <form action="/userData" method="post">
-                                        <textarea class="aboutText" name="blurb"
-                                            placeholder="Hey <%= user.fName%>,&#10;&#10;Here is where you get to showcase yourself! Tell us the roots of your passion for animation, favorite styles/artists/pieces, what you're currently working on and what kind of Collabor8 projects you're interested in being apart of. Happy Collabor8ing, friend!"></textarea><br>
-                                        <div class="text-center">
-                                            <button type="submit">
-                                                <h8>Save About Me</h8>
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <% } %>
+                        <div class="aboutMe">
+                            <h2 class="fw-bolder mb-4 mt-5 peru">About Me</h2>
+                            <div class="orangeBox">
+                                    <p>
+                                        <%= info.blurb %>
+                                    </p>
+                            </div>
+                        </div>        
+                        <div id="socialsList">
+                            <h3 class="peru"> Social </h3>
+                            <ul class="icons">
+                                <li>
+                                    <a id="instagramURL" href="<%=info.website%>" target="_blank">
+                                        <span>
+                                            <i class="fa fa-globe" aria-hidden="true"></i> 
+                                            Website
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a aria-hidden="true" target="_blank" href="<%=info.twitter%>" id="twitterURL">
+                                        <span>
+                                            <i class="fa fa-twitter"></i>
+                                            Twitter
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="instagramURL" href="<%=info.instagram%>" target="_blank">
+                                            <span>
+                                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            Instagram
+                                        </span>
+                                    </a>
+                                </li>            
+                                <li>
+                                    <a  href="<%=info.linkedIn%>"
+                                        id="linkedInURL">
+                                        <span>
+                                            <i id="linkedInURL" class="fa fa-linkedin" aria-hidden="true"></i>
+                                            Linked In
+                                        </span>
+                                    </a>
+                                </li>
+                    
+                                <li>
+                                    <a id="instagramURL" href="<%=info.deviantArt%>" target="_blank">
+                                            <span>
+                                            <i class="fa fa-globe" aria-hidden="true"></i>
+                                            Deviant Art
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div id="socialsList">
-                        <h3 class="peru"> Social </h3>
-                        <ul class="icons">
-                            <li><a aria-hidden="true" target="_blank" href="<%= info.twitter %>" id="twitterURL"><span><i
-                                            class="fa fa-twitter" ></i>
-                                        Twitter</span></a></li>
-                            <li><a  href="<%= info.linkedIn %>"
-                                    id="linkedInURL"><span><i id="linkedInURL" class="fa fa-linkedin"
-                                            aria-hidden="true"></i> Linked In</span></a></li>
-                            <li><a id="instagramURL" href="<%= info.instagram %>" target="_blank"><span><i
-                                            class="fa fa-instagram" aria-hidden="true"></i> Instagram</span></a></li>
-                            <li><a id="instagramURL" href="<%= info.website %>" target="_blank"><span><i
-                                                class="fa fa-globe" aria-hidden="true"></i> Website</span></a></li>
-                        </ul>
+            </section>
+            <% } else { %>
+            <section class="col-lg-4">
+                        <div class="mb-4">
+                            <h1 class="fw-bolder mb-1 peru">Welcome, <%= user.fName %>
+                            </h1>
+                            <span class="text-muted fst-italic mb-2">Collabor8er Since June 22, 2022</span><br>
+                            <span id="editAboutMe"><a class="badge bg-secondary text-decoration-none link-light" >Edit About
+                                Me </a></span>
+                            <a id="editSocials" class="badge bg-secondary text-decoration-none link-light" href="#!">Edit
+                                Socials</a>
+                        </div>
+                        <div>
+                            <figure class="mb-4"><img class="img-fluid rounded-circle" src="/images/blankprofile.png" alt="..." />
+                            </figure>
+                        </div>
+                        <div class="mb-5">        
+                        <div class="aboutMe">
+                            <h2 class="fw-bolder mb-4 mt-5 peru">About Me</h2>
+                            <div class="orangeBox">
+                            <form action="/userData" method="post">
+                                <div class="form-group">
+                                    <label>User Name (optional)</label><br>
+                                    <input type="text" class="form-control" name="userName">
+                                </div>
+                                <label for="city">Nearest Major City:</label>
+                                <select name="city" id="city">
+                                <option value="New York">New York</option>
+                                <option value="Pittsburgh">Pittsburgh</option>
+                                <option value="New Orleans">New Orleans</option>
+                                </select>
+                                <textarea class="aboutText" name="blurb"
+                                    placeholder="Hey <%= user.fName%>,&#10;&#10;Here is where you get to showcase yourself! Tell us the roots of your passion for animation, favorite styles/artists/pieces, what you're currently working on and what kind of Collabor8 projects you're interested in being apart of. Happy Collabor8ing, friend!"></textarea><br>
+                                <div class="text-center">
+                                    <div class="form-group">
+                                        <label>Website</label><br>
+                                        <input type="text" class="form-control" name="website">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Twitter</label><br>
+                                        <input type="text" class="form-control" name="twitter">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Instagram</label><br>
+                                        <input type="text" class="form-control" name="instagram">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Linked In</label><br>
+                                        <input type="text" class="form-control" name="linkedIn">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Deviant Art</label><br>
+                                        <input type="text" class="form-control" name="deviantArt">
+                                    </div><br>
+                                    <button type="submit">
+                                        <h8>Save About Me</h8>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </section>
+            <% } %>
             <section class="col-lg-8">
                 <h3 class="text-center dkgfont">Highlighted Projects</h3>
                 <div class="row">

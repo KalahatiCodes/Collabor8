@@ -39,22 +39,23 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
     res.redirect('/');
   });
 
-  // app.post('/userData', (req, res) => {
-  //   console.log(req.user.local.fName, 'saving')
-  //   db.collection('userData')
-  //     .insertOne({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, userName: req.body.userName, blurb: req.body.blurb, twitter: req.body.twitter, instagram: req.body.twitter, linkedIn: req.body.linkedIn, website: req.body.website, userPhoto: req.body.userPhoto }
-  //     )
-  //   res.redirect('/portfolioPage')
+  app.post('/userData', (req, res) => {
+    console.log(req.user.local.fName, 'saving')
+    db.collection('userData')
+      .insertOne({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, userName: req.body.userName, blurb: req.body.blurb, twitter: req.body.twitter, instagram: req.body.twitter, linkedIn: req.body.linkedIn, website: req.body.website, deviantArt: req.body.deviantArt, city: req.body.city }
+      )
+    res.redirect('/portfolioPage')
+  })
+
+  // app.post('/userData', upload.single('file-to-upload'), (req, res) => {
+  //   db.collection('userData').save({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, userName: req.body.userName, blurb: req.body.blurb, twitter: req.body.twitter, instagram: req.body.twitter, linkedIn: req.body.linkedIn, website: req.body.website}, (err, result) => {
+  //     console.log(result)
+  //     if (err) return console.log(err)
+  //     console.log('saved to database')
+  //     res.redirect('/portfolioPage')
+  //   })
   // })
 
-  app.post('/userData', upload.single('file-to-upload'), (req, res) => {
-    db.collection('userData').save({ fName: req.user.local.fName, lName: req.user.local.lName, email: req.user.local.email, userName: req.body.userName, blurb: req.body.blurb, twitter: req.body.twitter, instagram: req.body.twitter, linkedIn: req.body.linkedIn, website: req.body.website}, (err, result) => {
-      console.log(result)
-      if (err) return console.log(err)
-      console.log('saved to database')
-      res.redirect('/portfolioPage')
-    })
-  })
   // PROJECTS SECTION  
   // New Repository
   app.get('/newRepo', isLoggedIn, function (req, res) {
@@ -75,7 +76,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
 
   app.post('/newRepo', upload.single('file-to-upload'), (req, res) => {
     let user = req.user._id
-    db.collection('repositories').save({ creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript, category: req.body.category, img: '/images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
+    db.collection('repositories').save({ creatorId: user, creator: req.user.local.email, type: 'repo', repoName: req.body.repoName, repoDescription: req.body.repoDescript, category: req.body.category, img: 'images/uploads/' + req.file.filename, comments: [], }, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/portfolioPage')
@@ -334,7 +335,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
 
 
   app.post('/signUp', passport.authenticate('local-signup', {
-    successRedirect: '/setUp',
+    successRedirect: '/portfolioPage',
     failureRedirect: '/signUp',
     failureFlash: true
   }));
