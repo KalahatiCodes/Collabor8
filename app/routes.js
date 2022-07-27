@@ -34,6 +34,7 @@ module.exports = function (app, passport, db, ObjectId, multer, cookieParser) {
     })
   });
 
+
   app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
