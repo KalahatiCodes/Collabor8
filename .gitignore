@@ -2,3 +2,4 @@ node_modules
 views/TESTPP.ejs
 public/squares.js
 portfolioPage.js
+config/database.js
